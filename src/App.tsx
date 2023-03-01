@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 import QuestionPage from './pages/QuestionPage';
 import ResultPage from './pages/ResultPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; //react-router-dom을 통해서 import함
-
+import 'bootstrap/dist/css/bootstrap.min.css'; // bootstrap 적용이 안되면 상위폴더에 import 시키면 됨
 function App(): React.ReactElement {
   // TS이기 때문에 타입을 항상 설정해줘야 함
   return (
