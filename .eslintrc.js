@@ -11,7 +11,7 @@ module.exports = {
       jsx: true,
     },
   },
-result:{},
+  // result: '.eslintrc.js',
   settings: {
     react: {
       version: 'detect',
