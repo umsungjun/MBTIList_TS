@@ -1,17 +1,31 @@
 import React from 'react';
 import styled from 'styled-components'; // TS버전의 styled-components를 설치해야 함
-import { Image } from 'react-bootstrap';
-import { useSearchParams } from 'react-router-dom';
+import { Image, Button } from 'react-bootstrap';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ResultData } from '../stores/Result/ResultData';
 
 import Header from '../components/Header';
 import { IResult } from '../stores/Result/types';
+import KakaoShareButton from '../components/KakaoShareButton';
 
 export default function ResultPage(): React.ReactElement {
   const [searchParams] = useSearchParams();
   const mbti = searchParams.get('mbti'); // 예비집사의 MBTI
-  const TestResult = ResultData.find((cat: IResult) => cat.best === mbti);
+  const TestResult: IResult = ResultData.find(
+    (cat: IResult) => cat.best === mbti,
+  ) ?? {
+    id: 0,
+    name: '',
+    best: '',
+    mbti: '',
+    desc: '',
+    image: '',
+  };
   const freindCat = ResultData.find(friend => friend.best === TestResult?.mbti);
+  const navigate = useNavigate();
+  const handleClickReturnTest = () => {
+    navigate('/');
+  };
 
   return (
     <>
@@ -38,6 +52,15 @@ export default function ResultPage(): React.ReactElement {
           <BestDesc>
             {TestResult?.name}와 형제묘는!? {freindCat?.name} 입니다.
           </BestDesc>
+          <ButtonGroup>
+            <Button
+              className="btn btn-danger btn-lg"
+              onClick={handleClickReturnTest}
+            >
+              테스트 다시하기
+            </Button>
+            <KakaoShareButton data={TestResult} />
+          </ButtonGroup>
         </ContentWrapper>
       </Wrapper>
     </>
@@ -97,4 +120,14 @@ const BestDesc = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  margin-top: 50px;
+  width: 45%;
+  justify-content: space-around;
+  button {
+    min-width: 180px;
+  }
 `;
