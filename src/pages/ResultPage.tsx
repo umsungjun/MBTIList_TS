@@ -69,7 +69,7 @@ export default function ResultPage(): React.ReactElement {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 110vh;
   display: flex;
   flex-direction: column;
   background: #fffacd;
@@ -78,7 +78,7 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  height: 100vh;
+  height: 110vh;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
