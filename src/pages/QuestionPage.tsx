@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import { QuestionData } from '../stores/Question/QuestionData'; //더미데이터 import
 import Header from '../components/Header';
@@ -26,7 +26,13 @@ export default function QuestionPage(): React.ReactElement {
     if (QuestionData.length !== qeustionNo + 1) {
       setQeustionNo(qeustionNo + 1);
     } else {
-      navigate('/result');
+      const mbti = 'ENFJ';
+      navigate({
+        pathname: '/result',
+        search: `?${createSearchParams({
+          mbti: mbti,
+        })}`, //params로 전달
+      });
     }
     // if (type === 'EI') {
     //   // 기존스코어에 대한 새로운 스코어 값을 계산
