@@ -6,10 +6,15 @@ import { ResultData } from '../stores/Result/ResultData';
 
 import Header from '../components/Header';
 import PangImage from '../assets/ggompang.jpeg';
+import { IResult } from '../stores/Result/types';
 
 export default function ResultPage(): React.ReactElement {
   const [searchParams] = useSearchParams();
-  const mbti = searchParams.get('mbti');
+  const mbti = searchParams.get('mbti'); // 예비집사의 MBTI
+  const TestResult = ResultData.find((cat: IResult) => cat.best === mbti);
+
+  console.log(TestResult);
+
   return (
     <>
       <Wrapper>
@@ -20,14 +25,18 @@ export default function ResultPage(): React.ReactElement {
             <Image
               className="roundedCircle"
               style={{ borderRadius: '50%' }}
-              src={PangImage}
+              src={TestResult?.image}
               width={350}
               height={350}
             />
           </ResultImage>
           <Desc>
-            예비집사님과 찰떵궁합인 고양이는!? {mbti}형 고양이 입니다.
+            예비집사({mbti}) 님과 찰떵궁합인 고양이는!? {TestResult?.mbti}형
+            고양이 입니다.
           </Desc>
+          <CatDesc>
+            {TestResult?.name}는 {TestResult?.desc}
+          </CatDesc>
         </ContentWrapper>
       </Wrapper>
     </>
@@ -67,4 +76,15 @@ const Desc = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+`;
+
+const CatDesc = styled.div`
+  font-size: 18pt;
+  width: 80%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  text-align: center;
+  color: darkorange;
 `;

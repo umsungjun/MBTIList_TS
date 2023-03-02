@@ -17,16 +17,25 @@ export default function QuestionPage(): React.ReactElement {
   const navigate = useNavigate();
 
   const HandleClickAnswer = (ans: number, type: string) => {
-    const newScore = totalScore.map(s =>
-      s.id === type ? { id: s.id, score: s.score + ans } : s,
+    //왼쪽 버튼은 1, 오른족 버튼은 0으로 ans
+    const newScore = totalScore.map(
+      s => (s.id === type ? { id: s.id, score: s.score + ans } : s), // type이 일치하면 객체를 return해줌 일치하지 않는다면 s를 return
     );
 
-    setTotalScore(newScore);
+    setTotalScore(newScore); // 객체 전체를 반환
     // 마지막 문제가 아닐 때
     if (QuestionData.length !== qeustionNo + 1) {
-      setQeustionNo(qeustionNo + 1);
+      setQeustionNo(qeustionNo + 1); // 마지막 문제가 아니라면 현재 qeustionNo +1을 return
     } else {
-      const mbti = 'ENFJ';
+      // 마지막 문제라면
+      //newScore새로 만들어진 객체
+      const mbti = newScore.reduce(
+        (acc, curr) =>
+          acc +
+          (curr.score >= 2 ? curr.id.substring(0, 1) : curr.id.substring(1, 2)),
+        '',
+      );
+
       navigate({
         pathname: '/result',
         search: `?${createSearchParams({
@@ -34,6 +43,7 @@ export default function QuestionPage(): React.ReactElement {
         })}`, //params로 전달
       });
     }
+
     // if (type === 'EI') {
     //   // 기존스코어에 대한 새로운 스코어 값을 계산
     //   const addScore = totalScore[0].score + ans;
