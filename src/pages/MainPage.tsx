@@ -30,12 +30,14 @@ export default function MainPage(): React.ReactElement {
               height={350}
             />
           </LogoImage>
-          <Desc>MBTI를 기반으로 하는 나랑 잘맞는 고양이 찾기!</Desc>
+          <Desc style={{ marginTop: 50 }}>
+            MBTI를 기반으로 하는 나랑 잘맞는 고양이 찾기!
+          </Desc>
           <Desc>내가 집사가 되어서 고양이를 키운다면...?</Desc>
           <Button
             className="btn-danger"
             onClick={handleClickButton}
-            style={{ fontSize: 25, marginTop: 20, marginBottom: 20 }}
+            style={{ fontSize: 25, marginTop: 100, marginBottom: 20 }}
           >
             테스트 시작하기
           </Button>
@@ -65,10 +67,10 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 `;
 
 const Title = styled.div`

@@ -12,8 +12,7 @@ export default function ResultPage(): React.ReactElement {
   const [searchParams] = useSearchParams();
   const mbti = searchParams.get('mbti'); // 예비집사의 MBTI
   const TestResult = ResultData.find((cat: IResult) => cat.best === mbti);
-
-  console.log(TestResult);
+  const freindCat = ResultData.find(friend => friend.best === TestResult?.mbti);
 
   return (
     <>
@@ -37,6 +36,9 @@ export default function ResultPage(): React.ReactElement {
           <CatDesc>
             {TestResult?.name}는 {TestResult?.desc}
           </CatDesc>
+          <BestDesc>
+            {TestResult?.name}와 형제묘는!? {freindCat?.name} 입니다.
+          </BestDesc>
         </ContentWrapper>
       </Wrapper>
     </>
@@ -54,10 +56,10 @@ const Wrapper = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 `;
 
 const Title = styled.div`
@@ -87,4 +89,13 @@ const CatDesc = styled.div`
   margin-top: 50px;
   text-align: center;
   color: darkorange;
+`;
+
+const BestDesc = styled.div`
+  font-size: 20pt;
+  width: 80%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 `;

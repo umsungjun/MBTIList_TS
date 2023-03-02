@@ -114,7 +114,7 @@ const ContentWrapper = styled.div`
 
 const Title = styled.div`
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 50px;
   font-size: 25pt;
   text-align: center;
 `;
@@ -124,7 +124,7 @@ const ButtonGroup = styled.div`
   padding: 20px;
   width: 100%;
   justify-content: space-around;
-
+  margin-top: 250px;
   button {
     font-size: 15pt;
     max-width: 450px;
