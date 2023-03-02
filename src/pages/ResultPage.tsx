@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'; // TS버전의 styled-components를 설치해야 함
-import { Button, Image } from 'react-bootstrap';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Image } from 'react-bootstrap';
+import { useSearchParams } from 'react-router-dom';
 import { ResultData } from '../stores/Result/ResultData';
 
 import Header from '../components/Header';
-import PangImage from '../assets/ggompang.jpeg';
 import { IResult } from '../stores/Result/types';
 
 export default function ResultPage(): React.ReactElement {
