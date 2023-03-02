@@ -12,7 +12,9 @@ export default function KakaoShareButton(props: Props) {
   const resultUrl = window.location.href;
 
   useEffect(() => {
-    Kakao.init('8c909601cdf933c606e7fb64fc521c07');
+    if (Kakao.isInitialized) {
+      Kakao.init('8c909601cdf933c606e7fb64fc521c07');
+    }
   }, []);
 
   const shareKakao = () => {
