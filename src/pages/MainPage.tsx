@@ -3,7 +3,7 @@ import styled from 'styled-components'; // TS버전의 styled-components를 설�
 import { Button, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-import PangImage from '../assets/cat1.jpg';
+import PangImage from '../assets/ggompang.jpeg';
 
 export default function MainPage(): React.ReactElement {
   const navigate = useNavigate();
